@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.hrzntl {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #e0ffff;
+  height: auto;
+}
+
+.activity-zone {
+  width: 90%;
+  margin: 8% 5%;
+  box-shadow: 20px 10px 21px #2f4f4f;
+}
+
+.todo-container {
+  background-color: #d3d3d3;
+}
+
+.app-header {
+  border-bottom: 1px solid #708090;
+  height: 44px;
+  align-items: center;
+  padding-left: 1.9%;
+}
+
+.header-area,
+.userArea,
+.activity-area {
+  position: relative;
+}
+
+i {
+  position: absolute;
+  color: #2f4f4f;
+  right: 2.9%;
+  top: 15px;
+  font-size: 18px;
+}
+
+.header-area i,
+.userArea i {
+  right: 2.9%;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+i.bin {
+  right: 8%;
+}
+
+i.modify {
+  right: 13%;
+}
+
+.description-input {
+  width: 100%;
+  height: 45px;
+  border: 0 solid #2f4f4f;
+  border-bottom: 1px solid #2f4f4f;
+  padding-left: 1.9%;
+}
+
+.error-message {
+  margin: 0;
+  color: red;
+  font-size: 0.9rem;
+  padding-left: 1.9%;
+  transition: visibility 6s;
+}
+
+.description-input:focus {
+  outline: none;
+}
+
+.description-input::placeholder {
+  font-style: oblique;
+}
+
+.activity-area {
+  border-bottom: 1px solid #2f4f4f;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.activity-area:focus-within {
+  outline: none;
+  background-color: #708090;
+}
+
+.activity-description-area {
+  padding-left: 1.9%;
+  gap: 0.6rem;
+  width: 75%;
+}
+
+.activity-details {
+  width: 69%;
+  height: 45px;
+  margin: 2px;
+  padding: 15px;
+}
+
+.activity-details:focus {
+  outline: none;
+}
+
+.mark-activity:hover {
+  cursor: pointer;
+}
+
+.period-container {
+  gap: 0.2rem;
+  padding-right: 3%;
+}
+
+.period {
+  height: 6px;
+  width: 6px;
+  background-color: #000;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.period-container:hover {
+  cursor: url('../icons/pntr.png'), move;
+}
+
+.period-container:hover .period {
+  background-color: #000;
+}
+
+.delete-finished-activities {
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: #708090;
+}
+
+.delete-finished-activities:hover {
+  cursor: url('../icons/pntr.png'), move;
+  text-decoration: underline;
+}
