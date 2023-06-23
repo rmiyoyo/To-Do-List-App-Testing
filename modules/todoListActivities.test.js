@@ -109,7 +109,7 @@ describe('AvailableActivities', () => {
         expect(storedActivities[0].index).toBe(1);
         expect(storedActivities[1].index).toBe(2);
       });
-
+      
       // test 5
       test('should update localStorage with the updated activities array after removing an activity', () => {
         const initialActivities = [
@@ -141,6 +141,8 @@ describe('AvailableActivities', () => {
           index: 2,
         });
       });
+
+      // test 6
     });
   });
 });
