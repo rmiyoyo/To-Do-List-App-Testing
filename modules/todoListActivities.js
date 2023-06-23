@@ -13,7 +13,6 @@ export default class AvailableActivities {
       this.activities.push(newActivity);
       localStorage.setItem('savedActivities', JSON.stringify(this.activities));
 
-      // Update the DOM
       const listItem = document.createElement('li');
       listItem.textContent = newActivity.description;
       listElement.appendChild(listItem);
