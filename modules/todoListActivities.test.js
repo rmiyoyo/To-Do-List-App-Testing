@@ -4,49 +4,71 @@ describe('AvailableActivities', () => {
   describe('addActivity', () => {
     describe('addActivity', () => {
       beforeEach(() => {
+        // Create a mock localStorage
+        global.localStorage = {
+          getItem: jest.fn(),
+          setItem: jest.fn(),
+          clear: jest.fn(),
+        };
         localStorage.clear();
       });
 
-      test('should add a new activity to the activities array', () => {
+      test('should add a new activity to the activities array and update the DOM', () => {
+        // Create a mock DOM element for the list
+        const listElement = document.createElement('ul');
+
         const activities = new AvailableActivities();
+
         const activity = {
           description: 'New Activity',
           completed: false,
           index: 1,
         };
 
-        const result = activities.addActivity(activity);
+        const setItemMock = jest.spyOn(Storage.prototype, 'setItem');
+
+        const result = activities.addActivity(activity, listElement);
 
         expect(result).toHaveLength(1);
         expect(result[0]).toEqual(activity);
+
+        // Check if the <li> element is added to the DOM
+        expect(listElement.children).toHaveLength(1);
+        expect(listElement.children[0].textContent).toBe('New Activity');
+
+        // Check if localStorage is updated with the new activities array
+        expect(setItemMock).toHaveBeenCalledWith(
+          'savedActivities',
+          JSON.stringify(result),
+        );
       });
 
-      test('should not add an activity with an empty description', () => {
+      test('should not add an activity with an empty description and not update the DOM', () => {
+        // Create a mock DOM element for the list
+        const listElement = document.createElement('ul');
+
         const activities = new AvailableActivities();
+
         const activity = {
           description: '',
           completed: false,
           index: 1,
         };
 
-        const result = activities.addActivity(activity);
+        const setItemMock = jest.spyOn(localStorage, 'setItem');
+
+        const result = activities.addActivity(activity, listElement);
 
         expect(result).toHaveLength(0);
-      });
 
-      test('should update localStorage with the new activities array', () => {
-        const activities = new AvailableActivities();
-        const activity = {
-          description: 'New Activity',
-          completed: false,
-          index: 1,
-        };
+        // Check if no <li> element is added to the DOM
+        expect(listElement.children).toHaveLength(0);
 
-        activities.addActivity(activity);
-
-        const storedActivities = JSON.parse(localStorage.getItem('savedActivities'));
-        expect(storedActivities).toHaveLength(1);
-        expect(storedActivities[0]).toEqual(activity);
+        // Check if localStorage is not updated
+        expect(setItemMock).not.toHaveBeenCalledWith(
+          'savedActivities',
+          JSON.stringify(result),
+        );
       });
     });
   });

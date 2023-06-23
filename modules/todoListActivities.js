@@ -3,7 +3,7 @@ export default class AvailableActivities {
     this.activities = JSON.parse(localStorage.getItem('savedActivities')) || [];
   }
 
-  addActivity = (activity) => {
+  addActivity = (activity, listElement) => {
     if (activity.description !== '') {
       const newActivity = {
         description: activity.description,
@@ -12,6 +12,11 @@ export default class AvailableActivities {
       };
       this.activities.push(newActivity);
       localStorage.setItem('savedActivities', JSON.stringify(this.activities));
+
+      // Update the DOM
+      const listItem = document.createElement('li');
+      listItem.textContent = newActivity.description;
+      listElement.appendChild(listItem);
     }
     return this.activities;
   };
@@ -40,7 +45,7 @@ export default class AvailableActivities {
       document.querySelector(`p.d${activityPosition}`).style.textDecoration = 'none';
     }
     localStorage.setItem('savedActivities', JSON.stringify(this.activities));
-  }
+  };
 
   deleteAllFinished = () => {
     this.activities = this.activities.filter((activity) => activity.completed === false);
@@ -49,5 +54,5 @@ export default class AvailableActivities {
     }
     localStorage.setItem('savedActivities', JSON.stringify(this.activities));
     return this.activities;
-  }
+  };
 }
