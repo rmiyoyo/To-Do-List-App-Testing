@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1687537065667" clover="3.2.0">
-  <project timestamp="1687537065667" name="All files">
-    <metrics statements="31" coveredstatements="16" conditionals="8" coveredconditionals="4" methods="7" coveredmethods="3" elements="46" coveredelements="23" complexity="0" loc="31" ncloc="31" packages="1" files="1" classes="1"/>
+<coverage generated="1687540517712" clover="3.2.0">
+  <project timestamp="1687540517712" name="All files">
+    <metrics statements="34" coveredstatements="19" conditionals="8" coveredconditionals="4" methods="7" coveredmethods="3" elements="49" coveredelements="26" complexity="0" loc="34" ncloc="34" packages="1" files="1" classes="1"/>
     <file name="todoListActivities.js" path="/home/kifaru/Microverse/To-Do-List-App-Testing/modules/todoListActivities.js">
-      <metrics statements="31" coveredstatements="16" conditionals="8" coveredconditionals="4" methods="7" coveredmethods="3"/>
-      <line num="3" count="6" type="cond" truecount="2" falsecount="0"/>
-      <line num="6" count="6" type="stmt"/>
-      <line num="7" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="8" count="2" type="stmt"/>
-      <line num="13" count="2" type="stmt"/>
-      <line num="14" count="2" type="stmt"/>
-      <line num="16" count="3" type="stmt"/>
-      <line num="19" count="6" type="stmt"/>
-      <line num="20" count="3" type="stmt"/>
-      <line num="21" count="3" type="stmt"/>
-      <line num="22" count="6" type="stmt"/>
-      <line num="24" count="3" type="stmt"/>
+      <metrics statements="34" coveredstatements="19" conditionals="8" coveredconditionals="4" methods="7" coveredmethods="3"/>
+      <line num="3" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="6" count="5" type="stmt"/>
+      <line num="7" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="19" count="1" type="stmt"/>
+      <line num="21" count="2" type="stmt"/>
+      <line num="24" count="5" type="stmt"/>
       <line num="25" count="3" type="stmt"/>
-      <line num="28" count="6" type="stmt"/>
-      <line num="29" count="0" type="stmt"/>
-      <line num="30" count="0" type="stmt"/>
-      <line num="31" count="0" type="stmt"/>
-      <line num="34" count="6" type="stmt"/>
-      <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="26" count="3" type="stmt"/>
+      <line num="27" count="6" type="stmt"/>
+      <line num="29" count="3" type="stmt"/>
+      <line num="30" count="3" type="stmt"/>
+      <line num="33" count="5" type="stmt"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="35" count="0" type="stmt"/>
       <line num="36" count="0" type="stmt"/>
-      <line num="37" count="0" type="stmt"/>
-      <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="39" count="0" type="stmt"/>
-      <line num="40" count="0" type="stmt"/>
+      <line num="39" count="5" type="stmt"/>
+      <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="41" count="0" type="stmt"/>
       <line num="42" count="0" type="stmt"/>
-      <line num="45" count="6" type="stmt"/>
-      <line num="46" count="0" type="stmt"/>
+      <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="44" count="0" type="stmt"/>
+      <line num="45" count="0" type="stmt"/>
       <line num="47" count="0" type="stmt"/>
-      <line num="48" count="0" type="stmt"/>
-      <line num="50" count="0" type="stmt"/>
+      <line num="50" count="5" type="stmt"/>
       <line num="51" count="0" type="stmt"/>
+      <line num="52" count="0" type="stmt"/>
+      <line num="53" count="0" type="stmt"/>
+      <line num="55" count="0" type="stmt"/>
+      <line num="56" count="0" type="stmt"/>
     </file>
   </project>
 </coverage>
