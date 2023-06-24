@@ -1,6 +1,19 @@
 import AvailableActivities from './todoListActivities.js';
 
 describe('AvailableActivities', () => {
+  let activities;
+  let storageMock;
+
+  beforeEach(() => {
+    storageMock = {
+      getItem: jest.fn(),
+      setItem: jest.fn(),
+      clear: jest.fn(),
+    };
+
+    activities = new AvailableActivities();
+    activities.localStorage = storageMock;
+  });
   describe('addActivity', () => {
     describe('addActivity', () => {
       beforeEach(() => {
@@ -12,7 +25,6 @@ describe('AvailableActivities', () => {
         localStorage.clear();
       });
 
-      // Test 1
       test('should add a new activity to the activities array and update the DOM', () => {
         const listElement = document.createElement('ul');
         const activities = new AvailableActivities();
@@ -37,7 +49,6 @@ describe('AvailableActivities', () => {
         );
       });
 
-      // Test 2
       test('should not add an activity with an empty description and not update the DOM', () => {
         const listElement = document.createElement('ul');
         const activities = new AvailableActivities();
@@ -66,7 +77,6 @@ describe('AvailableActivities', () => {
         localStorage.clear();
       });
 
-      // test 3
       test('should remove the activity at the specified position from the activities array', () => {
         const initialActivities = [
           { description: 'Activity 1', completed: false, index: 1 },
@@ -86,7 +96,6 @@ describe('AvailableActivities', () => {
         expect(result[1].index).toBe(2);
       });
 
-      // test 4
       test('should update the index of remaining activities after removing an activity', () => {
         const initialActivities = [
           { description: 'Activity 1', completed: false, index: 1 },
@@ -110,7 +119,6 @@ describe('AvailableActivities', () => {
         expect(storedActivities[1].index).toBe(2);
       });
 
-      // test 5
       test('should update localStorage with the updated activities array after removing an activity', () => {
         const initialActivities = [
           { description: 'Activity 1', completed: false, index: 1 },
@@ -139,6 +147,124 @@ describe('AvailableActivities', () => {
           description: 'Activity 3',
           completed: false,
           index: 2,
+        });
+      });
+    });
+  });
+  describe('AvailableActivities', () => {
+    describe('modifyActivity', () => {
+      describe('modifyActivity', () => {
+        beforeEach(() => {
+          global.localStorage = {
+            getItem: jest.fn(),
+            setItem: jest.fn(),
+            clear: jest.fn(),
+          };
+          localStorage.clear();
+        });
+
+        test('should modify the description of an existing activity', () => {
+          const initialActivities = [
+            { description: 'Activity 1', completed: false, index: 1 },
+            { description: 'Activity 2', completed: false, index: 2 },
+            { description: 'Activity 3', completed: false, index: 3 },
+          ];
+          localStorage.setItem(
+            'savedActivities',
+            JSON.stringify(initialActivities),
+          );
+
+          const activities = new AvailableActivities();
+
+          const editedTaskElement = document.createElement('p');
+          editedTaskElement.innerHTML = 'Edited Activity';
+          document.querySelector = jest.fn().mockReturnValueOnce(editedTaskElement);
+
+          activities.modifyActivity(2);
+
+          const storedActivities = JSON.parse(
+            localStorage.getItem('savedActivities'),
+          );
+          expect(storedActivities[1].description).toBe('Edited Activity');
+        });
+      });
+    });
+
+    describe('changeActivityState', () => {
+      describe('changeActivityState', () => {
+        beforeEach(() => {
+          global.localStorage = {
+            getItem: jest.fn(),
+            setItem: jest.fn(),
+            clear: jest.fn(),
+          };
+          localStorage.clear();
+        });
+
+        test('should update the completion status of an activity and apply appropriate text decoration', () => {
+          const initialActivities = [
+            { description: 'Activity 1', completed: false, index: 1 },
+            { description: 'Activity 2', completed: false, index: 2 },
+          ];
+          localStorage.setItem(
+            'savedActivities',
+            JSON.stringify(initialActivities),
+          );
+
+          const mockElement = {
+            style: {
+              textDecoration: '',
+            },
+          };
+
+          document.querySelector = jest.fn().mockReturnValueOnce(mockElement);
+
+          const activities = new AvailableActivities();
+          activities.changeActivityState(1);
+
+          const storedActivities = JSON.parse(
+            localStorage.getItem('savedActivities'),
+          );
+          expect(storedActivities[0].completed).toBe(true);
+          expect(mockElement.style.textDecoration).toBe('line-through');
+        });
+      });
+    });
+
+    describe('deleteAllFinished', () => {
+      describe('deleteAllFinished', () => {
+        beforeEach(() => {
+          global.localStorage = {
+            getItem: jest.fn(),
+            setItem: jest.fn(),
+            clear: jest.fn(),
+          };
+          localStorage.clear();
+        });
+
+        test('should remove all completed activities from the activities array', () => {
+          const initialActivities = [
+            { description: 'Activity 1', completed: true, index: 1 },
+            { description: 'Activity 2', completed: false, index: 2 },
+            { description: 'Activity 3', completed: true, index: 3 },
+          ];
+          localStorage.setItem(
+            'savedActivities',
+            JSON.stringify(initialActivities),
+          );
+
+          const activities = new AvailableActivities();
+          const result = activities.deleteAllFinished();
+          const storedActivities = JSON.parse(
+            localStorage.getItem('savedActivities'),
+          );
+          expect(result).toHaveLength(1);
+          expect(storedActivities).toHaveLength(1);
+          expect(storedActivities[0]).toEqual({
+            description: 'Activity 2',
+            completed: false,
+            index: 1,
+          });
         });
       });
     });
